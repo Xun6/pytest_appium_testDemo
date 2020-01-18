@@ -1,4 +1,3 @@
-# coding=utf-8
 from time import sleep
 
 import pytest
@@ -11,6 +10,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestDemo:
+    search_data=yaml.safe_load(open("search.yaml", "r"))
+    print(search_data)
     def setup(self):
         caps = {}
         caps["platformName"] = "Android"
@@ -29,20 +30,16 @@ class TestDemo:
         )
         self.driver.find_element_by_id("image_cancel").click()
 
-    @pytest.mark.parametrize("keyword", [
-        ("alibaba"),
-        ("pdd"),
-        ("jd")
-    ])
-    def parameterized_test_demo(self, keyword):
+    @pytest.mark.parametrize("keyword_1", search_data)
+
+    # 参数调用_2
+    def test_demo(self, keyword_1):
         el3 = self.driver.find_element_by_id("com.xueqiu.android:id/home_search")
         el3.click()
         el4 = self.driver.find_element_by_id("com.xueqiu.android:id/search_input_text")
-        el4.send_keys(keyword)
+        el4.send_keys("keyword_1")
 
     def teardown(self):
         self.driver.quit()
 
-    # if __name__ == "__main__":    # 在python2.7下运行需要这条语句，但是切换到python3.7下运行就不需要这条语句了（亲测有效）
-    #     pytest.main(["-q","parameterized_Demo.py"])
 

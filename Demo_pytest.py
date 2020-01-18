@@ -3,6 +3,9 @@ from time import sleep
 import pytest
 from appium import webdriver
 from appium.webdriver.extensions.android.gsm import GsmCallActions
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestDemo:
@@ -17,6 +20,12 @@ class TestDemo:
 
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         self.driver.implicitly_wait(8)
+
+        # 显示等待（此方法可以去掉 弹出的 升级提示弹窗）
+        WebDriverWait(self.driver, 15).until(
+            expected_conditions.visibility_of_element_located((By.ID, "image_cancel"))
+        )
+        self.driver.find_element_by_id("image_cancel").click()
 
     def test_demo(self):
         # sleep(15)
@@ -34,6 +43,6 @@ class TestDemo:
     def teardown(self):
         self.driver.quit()
 
-    if __name__ == "__main__":
-        pytest.main(["-q","Demo_pytest.py"])
+    # if __name__ == "__main__":
+    #     pytest.main(["-q","Demo_pytest.py"])
 
