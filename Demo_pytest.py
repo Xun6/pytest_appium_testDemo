@@ -21,16 +21,18 @@ class TestDemo:
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         self.driver.implicitly_wait(8)
 
-        # 显示等待（此方法可以去掉 弹出的 升级提示弹窗）
-        WebDriverWait(self.driver, 15).until(
-            expected_conditions.visibility_of_element_located((By.ID, "image_cancel"))
-        )
-        self.driver.find_element_by_id("image_cancel").click()
+        # 显示等待（此方法可以去掉弹出的 升级提示弹窗）
+        # WebDriverWait(self.driver, 15).until(
+        #     expected_conditions.visibility_of_element_located((By.ID, "image_cancel"))
+        # )
+        # self.driver.find_element_by_id("image_cancel").click()
 
     def test_demo(self):
         # sleep(15)
         # if len(self.driver.find_element_by_id("image_cancel")) >=1:
         #     self.driver.find_element_by_id("image_cancel").click()
+        # else:
+        #     pass
         el3 = self.driver.find_element_by_id("com.xueqiu.android:id/home_search")
         el3.click()
         el4 = self.driver.find_element_by_id("com.xueqiu.android:id/search_input_text")

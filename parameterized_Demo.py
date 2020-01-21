@@ -34,7 +34,7 @@ class TestDemo:
         ("pdd"),
         ("jd")
     ])
-    def parameterized_test_demo(self, keyword):
+    def test_parametrize_demo(self, keyword):
         el3 = self.driver.find_element_by_id("com.xueqiu.android:id/home_search")
         el3.click()
         el4 = self.driver.find_element_by_id("com.xueqiu.android:id/search_input_text")
