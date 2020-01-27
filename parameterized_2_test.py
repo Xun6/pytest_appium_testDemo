@@ -34,7 +34,20 @@ class TestDemo:
         sleep(2)
 
 
+    def test_webview_Demo(self):
+        self.driver.find_element_by_xpath("//*[@text='交易']").click()
+        for i in range(5):   # 循环打印五次
+            print(self.driver.contexts)   # 打印上下文内容
+
+        self.driver.find_element_by_accessibility_id("A股开户").click()
+        # self.driver.switch_to.context(self.driver.contexts.last)  # 切换webview上下文（当找到webview上下文的时候，才可以切换，切换后可以使用css进行定位）
+        # print(self.driver.current_context())  # 打印查看是否切换成功
+
+        # 可借助 chrome://inspect/#devices(工具) 查看当前设备进程开启的 webview调试属性
+
+
     def teardown(self):
+        sleep(5)
         self.driver.quit()
 
 
