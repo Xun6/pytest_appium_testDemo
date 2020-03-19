@@ -11,7 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestDemo:
-    search_data=yaml.safe_load(open("search.yaml", "r"))
+    search_data=yaml.safe_load(open("search.yaml", "r"))   # 定义一个获取外部文件的变量
     print(search_data)
     def setup(self):
         caps = {}
@@ -31,7 +31,8 @@ class TestDemo:
         # )
         # self.driver.find_element_by_id("image_cancel").click()
 
-    @pytest.mark.parametrize("keyword_1", search_data)
+    @pytest.mark.parametrize("keyword_1", search_data)   # 使用外部文件里的数据
+
     # 参数调用_2
     def test_parametrize_1_demo_fromsearch(self, keyword_1):
         el3 = self.driver.find_element_by_id("com.xueqiu.android:id/home_search")
@@ -41,6 +42,7 @@ class TestDemo:
         sleep(2)
 
     def teardown(self):
+        sleep(5)
         self.driver.quit()
 
 

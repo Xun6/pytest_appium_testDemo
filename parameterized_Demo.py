@@ -14,7 +14,7 @@ class TestDemo:
     def setup(self):
         caps = {}
         caps["platformName"] = "Android"
-        caps["deviceName"] = "mumu"
+        caps["deviceName"] = "emulator-5554"
         caps["appPackage"] = "com.xueqiu.android"
         caps["appActivity"] = ".view.WelcomeActivityAlias"
         caps["autoGrantPermissions"] = "true"
@@ -23,11 +23,11 @@ class TestDemo:
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         self.driver.implicitly_wait(8)
 
-        # 显示等待（此方法可以去掉 弹出的 升级提示弹窗）
-        WebDriverWait(self.driver, 15).until(
-            expected_conditions.visibility_of_element_located((By.ID, "image_cancel"))
-        )
-        self.driver.find_element_by_id("image_cancel").click()
+        # # 显示等待（此方法可以去掉 弹出的 升级提示弹窗）
+        # WebDriverWait(self.driver, 15).until(
+        #     expected_conditions.visibility_of_element_located((By.ID, "image_cancel"))
+        # )
+        # self.driver.find_element_by_id("image_cancel").click()
 
     @pytest.mark.parametrize("keyword", [
         ("alibaba"),
@@ -41,6 +41,7 @@ class TestDemo:
         el4.send_keys(keyword)
 
     def teardown(self):
+        sleep(10)
         self.driver.quit()
 
     # if __name__ == "__main__":    # 在python2.7下运行需要这条语句，但是切换到python3.7下运行就不需要这条语句了（亲测有效）
