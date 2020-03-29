@@ -9,7 +9,7 @@ from page_object.po_dome import SearchPage
 class TestCase:
 
     def setup(self):
-       self.search_page=App.start().to_search()   #启动应用 进入首页 ，在进入搜索页   初始化一个变量 search_page
+       self.search_page = App.start().to_search()   #启动应用 进入首页 ，在进入搜索页   初始化一个变量 search_page
 
 
     def test_page_object(self):

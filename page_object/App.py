@@ -19,7 +19,7 @@ class App:  # 用于启动应用
         caps["autoGrantPermissions"] = "true"
 
         cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
-        cls.driver.implicitly_wait(10)
+        cls.driver.implicitly_wait(15)   #隐式等待
 
         return MainPage(cls.driver)  # 返回到主页 （应用启动后 会跳转到主页）
 
